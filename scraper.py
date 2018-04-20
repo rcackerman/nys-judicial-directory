@@ -55,6 +55,7 @@ JUDGES = {}
 browser.get("https://iapps.courts.state.ny.us/judicialdirectory/JudicialDirectory")
 # element = WebDriverWait(browser, 10).until(
                 # EC.presence_of_element_located((By.ID, "column1_A630")))
+
 # # For each letter in the alphabet, click on the link
 for letter in list(string.ascii_uppercase):
     print(letter)
@@ -65,6 +66,8 @@ for letter in list(string.ascii_uppercase):
     pagejudges = [i.text for i in _]
     print(pagejudges)
 
+    # TODO: fail gracefully by quitting and restarting
+    # maybe pop judges so that if one fails it'll go again
     for judge in pagejudges:
         judge_url = browser.find_element_by_link_text(judge).get_attribute('href')
 
